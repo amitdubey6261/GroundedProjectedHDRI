@@ -11,6 +11,7 @@ export default class Environment {
         this.experince = new Experience();
         this.createEnv();
         this.sunlight() ; 
+        this.groundShadow() ; 
     }
 
     async createEnv() {
@@ -28,10 +29,10 @@ export default class Environment {
 
     sunlight() {
         let sunGroup = new _.Group();
-
         let sunLight = new _.DirectionalLight();
         sunLight.name = 'Dir.Light'
         sunLight.intensity = 1;
+        sunLight.castShadow = true ; 
         sunLight.color.set('#ffffeb')
         sunLight.castShadow = true
         sunLight.shadow.camera.near = 0.1
@@ -51,5 +52,13 @@ export default class Environment {
         sunGroup.add(sunLight);
 
         this.experince.scene.add(sunGroup)
+    }
+
+    groundShadow(){
+        const plane = new _.Mesh( new _.PlaneGeometry(100,100) , new _.ShadowMaterial({opacity : .2 }) ) ; 
+        plane.rotateX(-Math.PI/2) ; 
+        plane.position.set( 0 , 0.01 , 0 ) ; 
+        plane.receiveShadow = true ;
+        this.experince.scene.add(plane) ; 
     }
 }

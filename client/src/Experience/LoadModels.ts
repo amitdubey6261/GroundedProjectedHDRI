@@ -67,7 +67,13 @@ export default class LoadModels{
     loadglTF(){
         return new Promise((res)=>{
             this.experience.data.forEach(async(elm : datatype )=>{
-                const glTF = await this.loaders.glbloader.loadAsync(elm.path) ; 
+                const glTF = await this.loaders.glbloader.loadAsync(elm.path) ;
+                glTF.scene.traverse((e)=>{
+                    if( e.type == 'Mesh' ){
+                        e.castShadow = true ; 
+                        e.receiveShadow = true ; 
+                    }
+                })
                 this.loadedModels.set(elm.name , glTF ) ; 
                 this.experience.scene.add(glTF.scene) ; 
             })

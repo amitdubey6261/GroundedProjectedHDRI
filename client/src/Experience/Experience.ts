@@ -6,6 +6,8 @@ import Environment from './Environment';
 import { data, datatype, hdridata, hdritype } from '../Utils/Assets';
 import LoadModels from './LoadModels';
 import World from './World';
+import PostProcessing from './PostProcessing';
+import HandleHTML from './HandleHtml';
 
 export default class Experience {
     static instance: Experience;
@@ -20,6 +22,8 @@ export default class Experience {
     hdridata : hdritype[] ; 
     resources : LoadModels ; 
     world : World ; 
+    postprocessing : PostProcessing ;
+    handleHTML : HandleHTML ; 
 
     constructor(canvas?: HTMLCanvasElement) {
         if (Experience.instance == undefined) {
@@ -37,6 +41,8 @@ export default class Experience {
                 this.resources = new LoadModels() ; 
                 this.env = new Environment();
                 this.world = new World() ; 
+                // this.postprocessing = new PostProcessing() ; 
+                this.handleHTML = new HandleHTML() ;
                 
                 this.time.on('update', () => {
                     this.update();

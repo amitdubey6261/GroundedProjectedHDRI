@@ -9,7 +9,7 @@ export default class Camera{
     constructor(){
         this.experience = new Experience() ; 
         this.camera = new _.PerspectiveCamera(50 , window.innerWidth/window.innerHeight , .1 , 200 ) ; 
-        this.camera.position.set( 2,2,2 ) ; 
+        this.camera.position.set( -4,4,4 ) ; 
     }
 
     intitOrbit(){
