@@ -29,8 +29,9 @@ export default class Render {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = _.VSMShadowMap;
         this.renderer.outputColorSpace = _.SRGBColorSpace;
-        this.renderer.toneMapping = _.ACESFilmicToneMapping;
+        this.renderer.toneMapping =  _.ACESFilmicToneMapping;
         this.renderer.autoClear = false ; 
+        // this.renderer.toneMappingExposure = .7 ; 
     }
 
     createComposer(){

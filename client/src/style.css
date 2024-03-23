@@ -25,13 +25,14 @@
 .Ui{
   position: absolute;
   right: 0;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #e3e3e3;
   width: 20%;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
 }
 
 .header{
@@ -58,9 +59,25 @@
 .header-child{
   width: 90%;
   margin-top: 5px;
-  height: 0px;
   background-color: rgb(255, 255, 255);
   box-shadow: 2px 2px 3px #9f9f9f;
   border-radius: 10px;
   transition: all 200ms;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center ;
+  align-items: center;
+}::-webkit-scrollbar{
+  display: none;
+}
+
+.image{
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px 3px rgb(139, 139, 139);
+  cursor: grab;
 }

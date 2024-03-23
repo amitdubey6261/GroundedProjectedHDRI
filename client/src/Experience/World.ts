@@ -1,12 +1,21 @@
 import { GLTF } from "three/examples/jsm/Addons.js";
 import Experience from "./Experience";
+import { Materials } from "../Utils/Assets";
+import DragAndDrop from "./DragAndDrop";
 
 export default class World{
     experience : Experience ; 
-    loadedmodels : Promise<Map<string , GLTF>>
+    loadedmodels : Map<string , GLTF> ; 
+    DragAndDrop : DragAndDrop ; 
     constructor(){
         this.experience = new Experience() ; 
-        this.loadedmodels = this.experience.resources.loadglTF()  as Promise<Map<string , GLTF>>; 
-        console.log(this.loadedmodels)
+        this.init() 
+    }
+    
+    async init(){
+        this.loadedmodels = await this.experience.resources.loadglTF() ;
+        // const sofa = this.loadedmodels.get('Sofa') ; 
+        this.DragAndDrop = new DragAndDrop() ; 
+        this.DragAndDrop.handleDragAndDrop() ; 
     }
 }

@@ -8,6 +8,7 @@ import LoadModels from './LoadModels';
 import World from './World';
 import PostProcessing from './PostProcessing';
 import HandleHTML from './HandleHtml';
+import CreateMaterial from './CreateMaterial';
 
 export default class Experience {
     static instance: Experience;
@@ -24,6 +25,7 @@ export default class Experience {
     world : World ; 
     postprocessing : PostProcessing ;
     handleHTML : HandleHTML ; 
+    createMaterial : CreateMaterial ; 
 
     constructor(canvas?: HTMLCanvasElement) {
         if (Experience.instance == undefined) {
@@ -40,9 +42,11 @@ export default class Experience {
                 this.renderer = new Render();
                 this.resources = new LoadModels() ; 
                 this.env = new Environment();
-                this.world = new World() ; 
                 // this.postprocessing = new PostProcessing() ; 
+                this.createMaterial = new CreateMaterial() ; 
                 this.handleHTML = new HandleHTML() ;
+                this.world = new World() ; 
+                
                 
                 this.time.on('update', () => {
                     this.update();

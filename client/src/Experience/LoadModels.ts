@@ -2,9 +2,9 @@ import * as _ from 'three' ;
 import { TextureLoader } from "three";
 import { DRACOLoader, EXRLoader, GLTF, GLTFLoader, KTX2Loader, RGBELoader } from "three/examples/jsm/Addons.js";
 import Experience from "./Experience";
-import { datatype, hdritype } from '../Utils/Assets';
+import { data, datatype, hdritype } from '../Utils/Assets';
 
-type loadersType ={
+export type loadersType ={
     glbloader : GLTFLoader , 
     dracoloader : DRACOLoader , 
     exrloader : EXRLoader , 
@@ -64,9 +64,9 @@ export default class LoadModels{
         })
     }
 
-    loadglTF(){
+    loadglTF(): Promise<Map<string,GLTF>>{
         return new Promise((res)=>{
-            this.experience.data.forEach(async(elm : datatype )=>{
+            this.experience.data.forEach(async(elm : datatype , idx )=>{
                 const glTF = await this.loaders.glbloader.loadAsync(elm.path) ;
                 glTF.scene.traverse((e)=>{
                     if( e.type == 'Mesh' ){
@@ -75,9 +75,9 @@ export default class LoadModels{
                     }
                 })
                 this.loadedModels.set(elm.name , glTF ) ; 
-                this.experience.scene.add(glTF.scene) ; 
+                this.experience.scene.add(glTF.scene) ;
+                if( idx == data.length-1 ) res(this.loadedModels) ; 
             })
-            res(this.loadedModels) ; 
         })
     }
 }
