@@ -82,14 +82,6 @@ export default class PostProcessing {
 
         this.velocityDepthNormalPass = new VelocityDepthNormalPass(this.scene, this.camera)
 
-        const bloomEffect = new PP.BloomEffect({
-            intensity: 1,
-            mipmapBlur: true,
-            luminanceSmoothing: 0.75,
-            luminanceThreshold: 0.75,
-            kernelSize: PP.KernelSize.MEDIUM,
-        })
-
         this.ssgiEffect = new SSGIEffect(this.scene, this.camera, this.velocityDepthNormalPass, this.options)
         this.ssgiPass = new PP.EffectPass(this.camera, this.ssgiEffect)
         this.ssgdiPass = new PP.EffectPass(this.camera, new SSDGIEffect(this.scene, this.camera, this.velocityDepthNormalPass, this.options))

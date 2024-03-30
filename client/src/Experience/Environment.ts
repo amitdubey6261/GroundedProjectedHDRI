@@ -25,6 +25,7 @@ export default class Environment {
         this.gps.material.uniforms.map.value = hdridata.texture;
         this.experince.scene.environment = hdridata.hdri;
         this.experince.scene.add(this.gps);
+        this.dayNight() ; 
     }
 
     sunlight() {
@@ -60,5 +61,19 @@ export default class Environment {
         plane.position.set( 0 , 0.01 , 0 ) ; 
         plane.receiveShadow = true ;
         this.experince.scene.add(plane) ; 
+    }
+
+    dayNight(){
+
+        const elem = document.getElementById('day-night-switch') as HTMLInputElement  ; 
+
+        elem?.addEventListener('input' , ()=>{
+            if( elem.checked ){
+                this.experince.renderer.renderer.toneMappingExposure = 1 ; 
+            }
+            else{
+                this.experince.renderer.renderer.toneMappingExposure = .1 ; 
+            }
+        })
     }
 }

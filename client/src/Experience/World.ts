@@ -1,6 +1,5 @@
 import { GLTF } from "three/examples/jsm/Addons.js";
 import Experience from "./Experience";
-import { Materials } from "../Utils/Assets";
 import DragAndDrop from "./DragAndDrop";
 
 export default class World{
